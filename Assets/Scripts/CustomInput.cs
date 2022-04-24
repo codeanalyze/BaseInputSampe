@@ -12,6 +12,7 @@ public class CustomInput : BaseInput
     private new void Start()
     {
         base.Start();
+        // EventSystem.current からも取得できるがUpdateで設定しているので1フレームずらして設定するのがつらい
         _inputModule.inputOverride = this;
     }
 
@@ -26,7 +27,7 @@ public class CustomInput : BaseInput
     public override string compositionString { get; }
     public override IMECompositionMode imeCompositionMode { get; set; }
     public override Vector2 compositionCursorPos { get; set; }
-    public override bool mousePresent => true;
+    public override bool mousePresent => true; // mousePresentを有効にしないと値を見てくれない
     public override Vector2 mousePosition => Input.mousePosition;
     public override Vector2 mouseScrollDelta => Input.mouseScrollDelta;
     public override bool touchSupported { get; }
